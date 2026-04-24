@@ -88,7 +88,7 @@ function App() {
           <wistia-player media-id="zeh8jif70j" aspect="0.5625"></wistia-player>
         </div>
 
-        {revealed && <div id="wiapy_upsell" className="mt-16 w-full" />}
+        {revealed && <div id="wiapy_upsell" className="mt-24 w-full" />}
       </div>
     </div>
   );
