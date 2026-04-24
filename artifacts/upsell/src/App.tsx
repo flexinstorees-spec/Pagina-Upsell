@@ -1,5 +1,5 @@
-import { useEffect, useRef } from "react";
-import { Loader2 } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { Loader2, CheckCircle2 } from "lucide-react";
 
 declare global {
   interface Window {
@@ -15,11 +15,19 @@ declare global {
   }
 }
 
+const REVEAL_DELAY_MS = 90_000;
+
 function App() {
   const initialized = useRef(false);
+  const [revealed, setRevealed] = useState(false);
 
   useEffect(() => {
-    if (initialized.current) return;
+    const timer = window.setTimeout(() => setRevealed(true), REVEAL_DELAY_MS);
+    return () => window.clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    if (!revealed || initialized.current) return;
 
     const tryInit = () => {
       if (typeof window.initWiapyUpsell === "function") {
@@ -49,26 +57,38 @@ function App() {
     }, 100);
 
     return () => window.clearInterval(interval);
-  }, []);
+  }, [revealed]);
 
   return (
     <div className="min-h-screen w-full flex flex-col items-center px-6 py-10 bg-white text-neutral-900">
       <div className="w-full max-w-md flex flex-col items-center">
         <div className="flex flex-col items-center">
-          <Loader2 className="w-12 h-12 text-[#00d769] animate-spin" />
-          <p className="mt-6 text-base font-semibold">
-            Processando o pagamento
-          </p>
-          <p className="mt-2 text-sm text-neutral-500 text-center">
-            Aguarde um instante, não feche esta página.
-          </p>
+          {revealed ? (
+            <>
+              <CheckCircle2 className="w-12 h-12 text-[#00d769]" />
+              <p className="mt-6 text-base font-semibold">Acesso confirmado</p>
+              <p className="mt-2 text-sm text-neutral-500 text-center">
+                Tudo certo! Seu acesso já está liberado.
+              </p>
+            </>
+          ) : (
+            <>
+              <Loader2 className="w-12 h-12 text-[#00d769] animate-spin" />
+              <p className="mt-6 text-base font-semibold">
+                Processando o pagamento
+              </p>
+              <p className="mt-2 text-sm text-neutral-500 text-center">
+                Aguarde um instante, não feche esta página.
+              </p>
+            </>
+          )}
         </div>
-
-        <div id="wiapy_upsell" className="mt-8 w-full" />
 
         <div className="mt-8 w-full">
           <wistia-player media-id="zeh8jif70j" aspect="0.5625"></wistia-player>
         </div>
+
+        {revealed && <div id="wiapy_upsell" className="mt-8 w-full" />}
       </div>
     </div>
   );
