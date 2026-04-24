@@ -5,6 +5,14 @@ declare global {
   interface Window {
     initWiapyUpsell?: (config: Record<string, unknown>) => void;
   }
+  namespace JSX {
+    interface IntrinsicElements {
+      "wistia-player": React.DetailedHTMLProps<
+        React.HTMLAttributes<HTMLElement> & { "media-id"?: string; aspect?: string },
+        HTMLElement
+      >;
+    }
+  }
 }
 
 export function Processing() {
@@ -44,16 +52,22 @@ export function Processing() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background flex flex-col items-center justify-center px-6">
-      <Loader2 className="w-12 h-12 text-primary animate-spin" />
-      <p className="mt-6 text-base font-medium text-foreground">
-        Processando o pagamento
-      </p>
-      <p className="mt-2 text-sm text-muted-foreground text-center">
-        Aguarde um instante, não feche esta página.
-      </p>
+    <div className="min-h-screen bg-background flex flex-col items-center px-6 py-8">
+      <div className="flex flex-col items-center">
+        <Loader2 className="w-12 h-12 text-primary animate-spin" />
+        <p className="mt-6 text-base font-medium text-foreground">
+          Processando o pagamento
+        </p>
+        <p className="mt-2 text-sm text-muted-foreground text-center">
+          Aguarde um instante, não feche esta página.
+        </p>
+      </div>
 
-      <div id="wiapy_upsell" className="mt-10 w-full max-w-sm" />
+      <div id="wiapy_upsell" className="mt-8 w-full max-w-sm" />
+
+      <div className="mt-8 w-full max-w-sm">
+        <wistia-player media-id="zeh8jif70j" aspect="0.5625"></wistia-player>
+      </div>
     </div>
   );
 }
