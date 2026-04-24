@@ -32,7 +32,7 @@ function App() {
     const tryInit = () => {
       if (typeof window.initWiapyUpsell === "function") {
         window.initWiapyUpsell({
-          linkUrl: "https://pay.wiapy.com/checkout/undefined",
+          linkUrl: "https://pay.wiapy.com/checkout/69eab772418dc3d124bec537",
           linkText: "EU QUERO APROVEITAR A OFERTA",
           styles: {
             backgroundColor: "#00d769",
