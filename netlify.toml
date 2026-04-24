@@ -1,5 +1,5 @@
 [build]
-  command = "corepack enable && pnpm install --frozen-lockfile=false && pnpm --filter @workspace/upsell run build"
+  command = "corepack enable && pnpm install --no-frozen-lockfile && pnpm --filter @workspace/upsell run build"
   publish = "artifacts/upsell/dist/public"
 
 [build.environment]
