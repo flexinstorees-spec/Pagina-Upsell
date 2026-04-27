@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   Check,
   X,
@@ -7,7 +7,16 @@ import {
   Sparkles,
   Rocket,
   GraduationCap,
+  Clock,
 } from "lucide-react";
+
+const COUNTDOWN_SECONDS = 15 * 60;
+
+function formatTime(total: number) {
+  const m = Math.floor(total / 60).toString().padStart(2, "0");
+  const s = (total % 60).toString().padStart(2, "0");
+  return { m, s };
+}
 
 declare global {
   interface Window {
@@ -17,6 +26,14 @@ declare global {
 
 function App() {
   const initialized = useRef(false);
+  const [secondsLeft, setSecondsLeft] = useState(COUNTDOWN_SECONDS);
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setSecondsLeft((s) => (s > 0 ? s - 1 : 0));
+    }, 1000);
+    return () => window.clearInterval(timer);
+  }, []);
 
   useEffect(() => {
     if (initialized.current) return;
@@ -117,7 +134,7 @@ function App() {
               Oferta exclusiva
             </span>
             <h2 className="text-[26px] font-semibold tracking-tight text-slate-900 leading-tight">
-              Pack com 300 Dinâmicas Interativas para Sala de Aula
+              O Que Vou Receber?
             </h2>
           </div>
 
@@ -172,6 +189,39 @@ function App() {
             </div>
           ))}
         </section>
+
+        <div className="flex flex-col items-center gap-2">
+          <p className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-slate-500">
+            <Clock className="h-3.5 w-3.5 text-rose-500" strokeWidth={2.5} />
+            A oferta termina em
+          </p>
+          <div className="flex items-center gap-2">
+            {(() => {
+              const { m, s } = formatTime(secondsLeft);
+              return (
+                <>
+                  <div className="flex flex-col items-center">
+                    <span className="rounded-xl bg-slate-900 text-white text-2xl font-semibold tracking-tight px-3 py-2 tabular-nums min-w-[3rem] text-center">
+                      {m}
+                    </span>
+                    <span className="mt-1 text-[10px] uppercase tracking-wider text-slate-400">
+                      min
+                    </span>
+                  </div>
+                  <span className="text-2xl font-semibold text-slate-400 -mt-4">:</span>
+                  <div className="flex flex-col items-center">
+                    <span className="rounded-xl bg-slate-900 text-white text-2xl font-semibold tracking-tight px-3 py-2 tabular-nums min-w-[3rem] text-center">
+                      {s}
+                    </span>
+                    <span className="mt-1 text-[10px] uppercase tracking-wider text-slate-400">
+                      seg
+                    </span>
+                  </div>
+                </>
+              );
+            })()}
+          </div>
+        </div>
 
         <section className="rounded-2xl bg-white border border-slate-200 p-7 flex flex-col items-center text-center gap-1.5">
           <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 text-emerald-700 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider mb-2">
