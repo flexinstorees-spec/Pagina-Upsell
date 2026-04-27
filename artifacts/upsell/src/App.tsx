@@ -1,5 +1,13 @@
 import { useEffect, useRef } from "react";
-import { Check, X, ShieldCheck } from "lucide-react";
+import {
+  Check,
+  X,
+  ShieldCheck,
+  Gift,
+  Sparkles,
+  Rocket,
+  GraduationCap,
+} from "lucide-react";
 
 declare global {
   interface Window {
@@ -78,6 +86,9 @@ function App() {
         </div>
 
         <header className="flex flex-col gap-3 text-center">
+          <span className="self-center inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-emerald-100 text-emerald-600">
+            <GraduationCap className="h-5 w-5" strokeWidth={2.25} />
+          </span>
           <h1 className="text-[28px] leading-tight font-semibold tracking-tight text-slate-900">
             Complete sua aula com um material pronto para aplicar todos os dias
           </h1>
@@ -107,7 +118,8 @@ function App() {
           </div>
 
           <div className="rounded-2xl bg-white border border-slate-200 p-6 flex flex-col gap-3.5">
-            <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+            <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-slate-400">
+              <Gift className="h-4 w-4 text-emerald-500" strokeWidth={2.25} />
               O que está incluso
             </p>
             {included.map((item) => (
@@ -145,7 +157,8 @@ function App() {
         </section>
 
         <section className="flex flex-col gap-3">
-          <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+          <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-slate-400">
+            <Sparkles className="h-4 w-4 text-emerald-500" strokeWidth={2.25} />
             Benefícios
           </p>
           {benefits.map((item) => (
@@ -157,9 +170,13 @@ function App() {
         </section>
 
         <section className="rounded-2xl bg-white border border-slate-200 p-7 flex flex-col items-center text-center gap-1.5">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 text-emerald-700 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider mb-2">
+            <Rocket className="h-3 w-3" strokeWidth={2.5} />
+            Oferta de hoje
+          </span>
           <p className="text-sm text-slate-400 line-through">R$197,00</p>
           <p className="text-5xl font-semibold tracking-tight text-slate-900 leading-none">
-            R$49,90
+            R$29,90
           </p>
           <p className="text-sm text-slate-500 mt-2">
             Pagamento único · Sem mensalidade
@@ -178,7 +195,7 @@ function App() {
               key={item}
               className="flex items-center gap-3 rounded-xl bg-white border border-slate-200 px-4 py-3"
             >
-              <ShieldCheck className="h-4.5 w-4.5 text-emerald-500 shrink-0" strokeWidth={2.25} />
+              <ShieldCheck className="h-5 w-5 text-emerald-500 shrink-0" strokeWidth={2.25} />
               <p className="text-[14px] font-medium text-slate-700">{item}</p>
             </div>
           ))}
