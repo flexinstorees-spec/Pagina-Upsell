@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import apostilaImage from "@assets/APOSTILA_3000X3000_(1)_1777294587808.png";
 import {
   Check,
   X,
@@ -114,16 +113,25 @@ function App() {
             </span>{" "}
             Para Aplicar Todos Os Dias
           </h1>
+          <picture>
+            <source
+              media="(min-width: 640px)"
+              srcSet={`${import.meta.env.BASE_URL}apostila-1200.webp`}
+            />
+            <img
+              src={`${import.meta.env.BASE_URL}apostila-800.webp`}
+              alt="300 Dinâmicas Interativas para Sala de Aula"
+              width={800}
+              height={800}
+              decoding="async"
+              fetchPriority="high"
+              className="mt-1 w-full h-auto"
+            />
+          </picture>
           <p className="text-base text-slate-500 leading-relaxed">
             Você já garantiu seus painéis… mas sua aula está preparada para
             manter os alunos envolvidos?
           </p>
-          <img
-            src={apostilaImage}
-            alt="300 Dinâmicas Interativas para Sala de Aula"
-            className="mt-2 w-full h-auto"
-            loading="eager"
-          />
         </header>
 
         <section className="flex flex-col gap-3">
