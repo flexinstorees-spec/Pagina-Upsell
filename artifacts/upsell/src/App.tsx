@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import apostilaImage from "@assets/APOSTILA_3000X3000_(1)_1777294587808.png";
 import {
   Check,
   X,
@@ -117,6 +118,12 @@ function App() {
             Você já garantiu seus painéis… mas sua aula está preparada para
             manter os alunos envolvidos?
           </p>
+          <img
+            src={apostilaImage}
+            alt="300 Dinâmicas Interativas para Sala de Aula"
+            className="mt-2 w-full h-auto"
+            loading="eager"
+          />
         </header>
 
         <section className="flex flex-col gap-3">
