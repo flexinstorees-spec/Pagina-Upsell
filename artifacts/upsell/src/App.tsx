@@ -107,11 +107,11 @@ function App() {
             <GraduationCap className="h-5 w-5" strokeWidth={2.25} />
           </span>
           <h1 className="text-[28px] leading-tight font-semibold tracking-tight text-slate-900">
-            Complete sua aula com{" "}
+            Complete Sua Aula Com{" "}
             <span className="text-emerald-600">
-              300 dinâmicas interativas
+              300 Dinâmicas Interativas
             </span>{" "}
-            para aplicar todos os dias
+            Para Aplicar Todos Os Dias
           </h1>
           <p className="text-base text-slate-500 leading-relaxed">
             Você já garantiu seus painéis… mas sua aula está preparada para
