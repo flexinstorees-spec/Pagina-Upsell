@@ -1,0 +1,121 @@
+Crie uma página de upsell responsiva (mobile-first), moderna, limpa e altamente otimizada para conversão.
+
+A página deve ser focada em usuários de celular, com layout vertical, espaçamento confortável, tipografia grande e leitura fácil.
+
+Use HTML, CSS e JavaScript simples (sem frameworks pesados).
+
+🎯 OBJETIVO:
+
+Criar uma página de upsell para professoras, vendendo um pack de 300 dinâmicas interativas para sala de aula.
+
+🎨 ESTILO VISUAL:
+Design clean e moderno
+Cores suaves e educativas (ex: azul claro, verde pastel, amarelo suave)
+Botões com cor de destaque (verde ou laranja)
+Tipografia grande e legível
+Cantos arredondados
+Espaçamento generoso
+Visual amigável e confiável
+100% otimizado para mobile
+📱 ESTRUTURA DA PÁGINA:
+1. TOPO (ALERTA)
+
+Texto pequeno e chamativo:
+
+"⚠️ ESPERE! Não feche esta página"
+
+2. HEADLINE PRINCIPAL
+
+"Complete sua aula com um material pronto para aplicar todos os dias"
+
+3. SUBHEADLINE
+
+"Você já garantiu seus painéis… mas sua aula está preparada para manter os alunos envolvidos?"
+
+4. BLOCO DE PROBLEMAS (com X)
+
+Lista com ícones de X:
+
+Fica sem ideia do que aplicar em sala
+Perde tempo planejando atividades
+Precisa improvisar na hora
+Tem dificuldade em prender a atenção dos alunos
+5. APRESENTAÇÃO DA OFERTA
+
+Título:
+
+"Pack com 300 Dinâmicas Interativas para Sala de Aula"
+
+6. LISTA DO QUE INCLUI (com check ✔)
+Dinâmicas de Português
+Dinâmicas de Matemática
+Coordenação motora
+Interação em grupo
+Atividades para prender atenção
+Dinâmicas para momentos difíceis
+Ideias rápidas para qualquer aula
+7. BLOCO "COMO FUNCIONA"
+
+Com ícones:
+
+Baixar
+Aplicar
+Usar no mesmo dia
+8. BENEFÍCIOS
+
+Lista com check:
+
+Mais atenção dos alunos
+Aulas mais leves
+Menos tempo planejando
+Mais organização
+Mais segurança na aula
+9. PREÇO
+
+Mostrar:
+
+Preço antigo riscado: R$197,00
+Preço atual destacado: R$49,90
+
+Texto:
+
+"Pagamento único • Sem mensalidade"
+
+10. BOTÃO PRINCIPAL (bem destacado)
+
+Texto:
+
+"QUERO APROVEITAR AGORA"
+
+Botão grande, fixo ou repetido ao longo da página
+
+11. ESCASSEZ
+
+Texto simples:
+
+"Essa oferta é válida somente nesta página"
+
+12. BOTÃO DE RECUSA
+
+Texto menor e discreto:
+
+"Não, obrigada. Prefiro continuar planejando tudo sozinha."
+
+13. GARANTIAS
+Acesso imediato
+Download instantâneo
+Sem mensalidade
+⚙️ FUNCIONALIDADES IMPORTANTES:
+Página extremamente rápida (leve)
+Botão com efeito hover e clique
+Layout totalmente responsivo
+Botão principal sempre visível (sticky opcional)
+Animações leves (fade-in)
+📌 EXTRA (IMPORTANTE):
+Use emojis com moderação (apenas onde faz sentido)
+Priorize leitura rápida
+Evite blocos grandes de texto
+Tudo deve parecer simples e confiável
+RESULTADO ESPERADO:
+
+Uma página de upsell com cara profissional, simples, direta e otimizada para conversão no celular, com foco em professoras.

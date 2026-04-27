@@ -1,33 +1,25 @@
-import { useEffect, useRef, useState } from "react";
-import { Loader2, CheckCircle2 } from "lucide-react";
+import { useEffect, useRef } from "react";
+import {
+  Check,
+  X,
+  Download,
+  Sparkles,
+  Clock,
+  ShieldCheck,
+  Zap,
+} from "lucide-react";
 
 declare global {
   interface Window {
     initWiapyUpsell?: (config: Record<string, unknown>) => void;
   }
-  namespace JSX {
-    interface IntrinsicElements {
-      "wistia-player": React.DetailedHTMLProps<
-        React.HTMLAttributes<HTMLElement> & { "media-id"?: string; aspect?: string },
-        HTMLElement
-      >;
-    }
-  }
 }
-
-const REVEAL_DELAY_MS = 90_000;
 
 function App() {
   const initialized = useRef(false);
-  const [revealed, setRevealed] = useState(false);
 
   useEffect(() => {
-    const timer = window.setTimeout(() => setRevealed(true), REVEAL_DELAY_MS);
-    return () => window.clearTimeout(timer);
-  }, []);
-
-  useEffect(() => {
-    if (!revealed || initialized.current) return;
+    if (initialized.current) return;
 
     const tryInit = () => {
       if (typeof window.initWiapyUpsell === "function") {
@@ -37,8 +29,8 @@ function App() {
           styles: {
             backgroundColor: "#00d769",
             hoverBackgroundColor: "#00b85a",
-            fontSize: "17px",
-            borderRadius: "10px",
+            fontSize: "18px",
+            borderRadius: "12px",
           },
           refusalLinkUrl: "https://wiapy.com/login",
           refusalLinkText: "Não quero aproveitar a oferta",
@@ -57,39 +49,168 @@ function App() {
     }, 100);
 
     return () => window.clearInterval(interval);
-  }, [revealed]);
+  }, []);
+
+  const problems = [
+    "Fica sem ideia do que aplicar em sala",
+    "Perde tempo planejando atividades",
+    "Precisa improvisar na hora",
+    "Tem dificuldade em prender a atenção dos alunos",
+  ];
+
+  const included = [
+    "Dinâmicas de Português",
+    "Dinâmicas de Matemática",
+    "Coordenação motora",
+    "Interação em grupo",
+    "Atividades para prender atenção",
+    "Dinâmicas para momentos difíceis",
+    "Ideias rápidas para qualquer aula",
+  ];
+
+  const benefits = [
+    "Mais atenção dos alunos",
+    "Aulas mais leves",
+    "Menos tempo planejando",
+    "Mais organização",
+    "Mais segurança na aula",
+  ];
+
+  const guarantees = ["Acesso imediato", "Download instantâneo", "Sem mensalidade"];
 
   return (
-    <div className="min-h-screen w-full flex flex-col items-center px-6 py-10 bg-white text-neutral-900">
-      <div className="w-full max-w-md flex flex-col items-center">
-        <div className="flex flex-col items-center">
-          {revealed ? (
-            <>
-              <CheckCircle2 className="w-12 h-12 text-[#00d769]" />
-              <p className="mt-6 text-base font-semibold">Acesso confirmado</p>
-              <p className="mt-2 text-sm text-neutral-500 text-center">
-                Tudo certo! Seu acesso já está liberado.
-              </p>
-            </>
-          ) : (
-            <>
-              <Loader2 className="w-12 h-12 text-[#00d769] animate-spin" />
-              <p className="mt-6 text-base font-semibold">
-                Processando o pagamento
-              </p>
-              <p className="mt-2 text-sm text-neutral-500 text-center">
-                Aguarde um instante, não feche esta página.
-              </p>
-            </>
-          )}
+    <div className="min-h-screen w-full bg-gradient-to-b from-sky-50 via-white to-emerald-50 text-neutral-900">
+      <div className="mx-auto w-full max-w-md px-5 py-6 flex flex-col gap-8 animate-[fadeIn_400ms_ease-out]">
+        <div className="rounded-full bg-amber-100 border border-amber-200 px-4 py-2 text-center text-sm font-semibold text-amber-800">
+          ⚠️ ESPERE! Não feche esta página
         </div>
 
-        <div className="mt-8 w-full">
-          <wistia-player media-id="zeh8jif70j" aspect="0.5625"></wistia-player>
-        </div>
+        <header className="flex flex-col gap-3 text-center">
+          <h1 className="text-[26px] leading-tight font-extrabold text-neutral-900">
+            Complete sua aula com um material pronto para aplicar todos os dias
+          </h1>
+          <p className="text-base text-neutral-600 leading-relaxed">
+            Você já garantiu seus painéis… mas sua aula está preparada para
+            manter os alunos envolvidos?
+          </p>
+        </header>
 
-        {revealed && <div id="wiapy_upsell" className="mt-24 w-full" />}
+        <section className="rounded-2xl bg-white shadow-sm border border-neutral-100 p-5 flex flex-col gap-3">
+          {problems.map((item) => (
+            <div key={item} className="flex items-start gap-3">
+              <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-red-100">
+                <X className="h-4 w-4 text-red-600" strokeWidth={3} />
+              </span>
+              <p className="text-[15px] leading-snug text-neutral-700">{item}</p>
+            </div>
+          ))}
+        </section>
+
+        <section className="flex flex-col gap-4">
+          <div className="text-center flex flex-col gap-2">
+            <span className="inline-flex items-center justify-center gap-1.5 self-center rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-700">
+              <Sparkles className="h-3.5 w-3.5" /> OFERTA EXCLUSIVA
+            </span>
+            <h2 className="text-2xl font-extrabold text-neutral-900 leading-tight">
+              Pack com 300 Dinâmicas Interativas para Sala de Aula
+            </h2>
+          </div>
+
+          <div className="rounded-2xl bg-white shadow-sm border border-neutral-100 p-5 flex flex-col gap-3">
+            <p className="text-sm font-semibold text-neutral-500 uppercase tracking-wide">
+              O que está incluso
+            </p>
+            {included.map((item) => (
+              <div key={item} className="flex items-start gap-3">
+                <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-100">
+                  <Check className="h-4 w-4 text-emerald-600" strokeWidth={3} />
+                </span>
+                <p className="text-[15px] leading-snug text-neutral-700">
+                  {item}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="flex flex-col gap-4">
+          <h3 className="text-center text-lg font-bold text-neutral-900">
+            Como funciona
+          </h3>
+          <div className="grid grid-cols-3 gap-3">
+            {[
+              { icon: Download, label: "Baixar" },
+              { icon: Zap, label: "Aplicar" },
+              { icon: Clock, label: "Usar no mesmo dia" },
+            ].map(({ icon: Icon, label }) => (
+              <div
+                key={label}
+                className="flex flex-col items-center gap-2 rounded-2xl bg-white shadow-sm border border-neutral-100 px-2 py-4 text-center"
+              >
+                <span className="flex h-11 w-11 items-center justify-center rounded-full bg-sky-100">
+                  <Icon className="h-5 w-5 text-sky-600" />
+                </span>
+                <p className="text-xs font-semibold text-neutral-700 leading-tight">
+                  {label}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="rounded-2xl bg-white shadow-sm border border-neutral-100 p-5 flex flex-col gap-3">
+          <p className="text-sm font-semibold text-neutral-500 uppercase tracking-wide">
+            Benefícios
+          </p>
+          {benefits.map((item) => (
+            <div key={item} className="flex items-start gap-3">
+              <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-100">
+                <Check className="h-4 w-4 text-emerald-600" strokeWidth={3} />
+              </span>
+              <p className="text-[15px] leading-snug text-neutral-700">{item}</p>
+            </div>
+          ))}
+        </section>
+
+        <section className="rounded-3xl bg-gradient-to-br from-emerald-50 to-sky-50 border-2 border-emerald-200 p-6 flex flex-col items-center text-center gap-2">
+          <p className="text-sm text-neutral-500 line-through">De R$197,00</p>
+          <p className="text-5xl font-extrabold text-emerald-600 leading-none">
+            R$49,90
+          </p>
+          <p className="text-sm font-medium text-neutral-600 mt-1">
+            Pagamento único • Sem mensalidade
+          </p>
+        </section>
+
+        <div id="wiapy_upsell" className="w-full" />
+
+        <p className="text-center text-sm font-semibold text-amber-700 bg-amber-50 border border-amber-200 rounded-xl py-3 px-4">
+          Essa oferta é válida somente nesta página
+        </p>
+
+        <section className="flex flex-col gap-3">
+          {guarantees.map((item) => (
+            <div
+              key={item}
+              className="flex items-center gap-3 rounded-xl bg-white border border-neutral-100 px-4 py-3 shadow-sm"
+            >
+              <ShieldCheck className="h-5 w-5 text-emerald-600 shrink-0" />
+              <p className="text-[15px] font-medium text-neutral-700">{item}</p>
+            </div>
+          ))}
+        </section>
+
+        <p className="text-center text-xs text-neutral-400 pb-4">
+          © {new Date().getFullYear()} • Todos os direitos reservados
+        </p>
       </div>
+
+      <style>{`
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(8px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
     </div>
   );
 }
