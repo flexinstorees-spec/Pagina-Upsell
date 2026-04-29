@@ -11,6 +11,8 @@ import {
   Star,
   ChevronLeft,
   ChevronRight,
+  Volume2,
+  VolumeX,
 } from "lucide-react";
 
 const COUNTDOWN_SECONDS = 15 * 60;
@@ -164,6 +166,15 @@ function TestimonialsCarousel() {
 function App() {
   const initialized = useRef(false);
   const [secondsLeft, setSecondsLeft] = useState(COUNTDOWN_SECONDS);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isMuted, setIsMuted] = useState(true);
+
+  const toggleMute = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = !videoRef.current.muted;
+      setIsMuted(videoRef.current.muted);
+    }
+  };
 
   useEffect(() => {
     const timer = window.setInterval(() => {
@@ -252,6 +263,7 @@ function App() {
           </h1>
           <div className="relative mt-1 w-full overflow-hidden rounded-xl" style={{ aspectRatio: "9/16" }}>
             <video
+              ref={videoRef}
               src="https://i.imgur.com/Myw9yLg.mp4"
               autoPlay
               loop
@@ -259,6 +271,17 @@ function App() {
               playsInline
               className="absolute top-0 left-0 w-full h-full object-cover"
             />
+            <button
+              onClick={toggleMute}
+              className="absolute bottom-3 right-3 flex items-center justify-center h-9 w-9 rounded-full bg-black/50 text-white backdrop-blur-sm transition-opacity hover:opacity-80"
+              aria-label={isMuted ? "Ativar som" : "Desativar som"}
+            >
+              {isMuted ? (
+                <VolumeX className="h-4 w-4" />
+              ) : (
+                <Volume2 className="h-4 w-4" />
+              )}
+            </button>
           </div>
           <p className="text-base text-slate-500 leading-relaxed">
             Você já garantiu seus painéis… mas sua aula está preparada para
