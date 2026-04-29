@@ -8,6 +8,9 @@ import {
   Rocket,
   GraduationCap,
   Clock,
+  Star,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 
 const COUNTDOWN_SECONDS = 15 * 60;
@@ -22,6 +25,140 @@ declare global {
   interface Window {
     initWiapyUpsell?: (config: Record<string, unknown>) => void;
   }
+}
+
+const testimonials = [
+  {
+    name: "Ana Paula S.",
+    role: "Professora de Ensino Fundamental",
+    text: "Comprei ontem e já usei duas dinâmicas hoje! Os alunos adoraram e a aula ficou muito mais animada. Vale cada centavo!",
+    stars: 5,
+  },
+  {
+    name: "Carla M.",
+    role: "Pedagoga",
+    text: "Estava com dificuldade de prender a atenção da turma. Depois das dinâmicas, a diferença foi imediata. Recomendo demais!",
+    stars: 5,
+  },
+  {
+    name: "Fernanda R.",
+    role: "Professora de Português",
+    text: "Material muito bem organizado. Dá pra usar na hora, sem precisar preparar nada. Salvou minha semana!",
+    stars: 5,
+  },
+  {
+    name: "Juliana T.",
+    role: "Professora de Matemática",
+    text: "Nunca imaginei que ia conseguir deixar a aula de matemática tão divertida. Os alunos pediram pra repetir!",
+    stars: 5,
+  },
+  {
+    name: "Mariana L.",
+    role: "Professora de Educação Infantil",
+    text: "Excelente conteúdo! As dinâmicas de coordenação motora foram um sucesso com as crianças. Super recomendo.",
+    stars: 5,
+  },
+  {
+    name: "Patricia O.",
+    role: "Professora do 3º ano",
+    text: "Já comprei outros materiais parecidos, mas esse é o melhor. Prático, completo e funciona de verdade em sala.",
+    stars: 5,
+  },
+  {
+    name: "Renata B.",
+    role: "Coordenadora Pedagógica",
+    text: "Indiquei pra toda a equipe da escola. As professoras adoraram e já estão usando. Conteúdo de altíssima qualidade!",
+    stars: 5,
+  },
+  {
+    name: "Simone F.",
+    role: "Professora de Ciências",
+    text: "Pensava que não ia funcionar com minha turma difícil, mas funcionou! Os alunos ficaram engajados do início ao fim.",
+    stars: 5,
+  },
+];
+
+function TestimonialsCarousel() {
+  const [current, setCurrent] = useState(0);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const resetTimer = () => {
+    if (timerRef.current) clearInterval(timerRef.current);
+    timerRef.current = setInterval(() => {
+      setCurrent((c) => (c + 1) % testimonials.length);
+    }, 4000);
+  };
+
+  useEffect(() => {
+    resetTimer();
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+  }, []);
+
+  const prev = () => {
+    setCurrent((c) => (c - 1 + testimonials.length) % testimonials.length);
+    resetTimer();
+  };
+
+  const next = () => {
+    setCurrent((c) => (c + 1) % testimonials.length);
+    resetTimer();
+  };
+
+  const t = testimonials[current];
+
+  return (
+    <section className="flex flex-col gap-4">
+      <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-slate-400">
+        <Star className="h-4 w-4 text-amber-400 fill-amber-400" strokeWidth={2} />
+        O que dizem as professoras
+      </p>
+
+      <div className="relative">
+        <div className="rounded-2xl bg-white border border-slate-200 p-6 flex flex-col gap-4 min-h-[180px]">
+          <div className="flex gap-0.5">
+            {Array.from({ length: t.stars }).map((_, i) => (
+              <Star key={i} className="h-4 w-4 text-amber-400 fill-amber-400" strokeWidth={0} />
+            ))}
+          </div>
+          <p className="text-[15px] leading-relaxed text-slate-700 flex-1">"{t.text}"</p>
+          <div>
+            <p className="text-sm font-semibold text-slate-900">{t.name}</p>
+            <p className="text-xs text-slate-400 mt-0.5">{t.role}</p>
+          </div>
+        </div>
+
+        <button
+          onClick={prev}
+          className="absolute left-[-16px] top-1/2 -translate-y-1/2 flex h-8 w-8 items-center justify-center rounded-full bg-white border border-slate-200 shadow-sm text-slate-500 hover:text-slate-900 transition-colors"
+          aria-label="Anterior"
+        >
+          <ChevronLeft className="h-4 w-4" />
+        </button>
+        <button
+          onClick={next}
+          className="absolute right-[-16px] top-1/2 -translate-y-1/2 flex h-8 w-8 items-center justify-center rounded-full bg-white border border-slate-200 shadow-sm text-slate-500 hover:text-slate-900 transition-colors"
+          aria-label="Próximo"
+        >
+          <ChevronRight className="h-4 w-4" />
+        </button>
+      </div>
+
+      <div className="flex justify-center gap-1.5">
+        {testimonials.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => { setCurrent(i); resetTimer(); }}
+            className={`h-1.5 rounded-full transition-all duration-300 ${
+              i === current ? "w-5 bg-emerald-500" : "w-1.5 bg-slate-300"
+            }`}
+            aria-label={`Depoimento ${i + 1}`}
+          />
+        ))}
+      </div>
+    </section>
+  );
 }
 
 function App() {
@@ -204,6 +341,8 @@ function App() {
             </div>
           ))}
         </section>
+
+        <TestimonialsCarousel />
 
         <div className="flex flex-col items-center gap-2">
           <p className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-slate-500">
