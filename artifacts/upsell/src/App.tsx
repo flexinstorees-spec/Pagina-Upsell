@@ -250,14 +250,16 @@ function App() {
             </span>{" "}
             Para Aplicar Todos Os Dias
           </h1>
-          <video
-            src="https://i.imgur.com/Myw9yLg.mp4"
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="mt-1 w-full h-auto rounded-xl"
-          />
+          <div className="relative mt-1 w-full overflow-hidden rounded-xl" style={{ aspectRatio: "9/16" }}>
+            <video
+              src="https://i.imgur.com/Myw9yLg.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="absolute top-0 left-0 w-full h-full object-cover"
+            />
+          </div>
           <p className="text-base text-slate-500 leading-relaxed">
             Você já garantiu seus painéis… mas sua aula está preparada para
             manter os alunos envolvidos?
