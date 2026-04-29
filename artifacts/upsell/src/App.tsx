@@ -170,6 +170,7 @@ function App() {
 
   const handleVideoTap = () => {
     if (videoRef.current) {
+      videoRef.current.currentTime = 0;
       videoRef.current.muted = false;
       videoRef.current.play();
       setHasInteracted(true);
@@ -274,12 +275,16 @@ function App() {
             {!hasInteracted && (
               <button
                 onClick={handleVideoTap}
-                className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-black/40"
+                className="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-black/50"
               >
-                <span className="flex items-center justify-center h-16 w-16 rounded-full bg-white/20 backdrop-blur-sm border-2 border-white">
-                  <Volume2 className="h-7 w-7 text-white" />
+                <span className="relative flex items-center justify-center">
+                  <span className="absolute h-24 w-24 rounded-full bg-emerald-400/40 animate-ping" />
+                  <span className="absolute h-20 w-20 rounded-full bg-emerald-400/30" />
+                  <span className="relative flex items-center justify-center h-16 w-16 rounded-full bg-emerald-500 shadow-lg shadow-emerald-500/50">
+                    <Volume2 className="h-7 w-7 text-white" />
+                  </span>
                 </span>
-                <span className="text-white text-base font-semibold drop-shadow-md">
+                <span className="rounded-full bg-white px-5 py-2 text-sm font-bold text-emerald-700 shadow-lg tracking-wide uppercase">
                   Toque para ouvir
                 </span>
               </button>
