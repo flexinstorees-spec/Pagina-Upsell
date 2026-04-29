@@ -250,21 +250,14 @@ function App() {
             </span>{" "}
             Para Aplicar Todos Os Dias
           </h1>
-          <picture>
-            <source
-              media="(min-width: 640px)"
-              srcSet={`${import.meta.env.BASE_URL}apostila-1200.webp`}
-            />
-            <img
-              src={`${import.meta.env.BASE_URL}apostila-800.webp`}
-              alt="300 Dinâmicas Interativas para Sala de Aula"
-              width={800}
-              height={800}
-              decoding="async"
-              fetchPriority="high"
-              className="mt-1 w-full h-auto"
-            />
-          </picture>
+          <video
+            src="https://i.imgur.com/Myw9yLg.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="mt-1 w-full h-auto rounded-xl"
+          />
           <p className="text-base text-slate-500 leading-relaxed">
             Você já garantiu seus painéis… mas sua aula está preparada para
             manter os alunos envolvidos?
