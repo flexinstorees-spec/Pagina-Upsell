@@ -12,7 +12,6 @@ import {
   ChevronLeft,
   ChevronRight,
   Volume2,
-  VolumeX,
 } from "lucide-react";
 
 const COUNTDOWN_SECONDS = 15 * 60;
@@ -167,12 +166,13 @@ function App() {
   const initialized = useRef(false);
   const [secondsLeft, setSecondsLeft] = useState(COUNTDOWN_SECONDS);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [isMuted, setIsMuted] = useState(true);
+  const [hasInteracted, setHasInteracted] = useState(false);
 
-  const toggleMute = () => {
+  const handleVideoTap = () => {
     if (videoRef.current) {
-      videoRef.current.muted = !videoRef.current.muted;
-      setIsMuted(videoRef.current.muted);
+      videoRef.current.muted = false;
+      videoRef.current.play();
+      setHasInteracted(true);
     }
   };
 
@@ -271,17 +271,19 @@ function App() {
               playsInline
               className="absolute top-0 left-0 w-full h-full object-cover"
             />
-            <button
-              onClick={toggleMute}
-              className="absolute bottom-3 right-3 flex items-center justify-center h-9 w-9 rounded-full bg-black/50 text-white backdrop-blur-sm transition-opacity hover:opacity-80"
-              aria-label={isMuted ? "Ativar som" : "Desativar som"}
-            >
-              {isMuted ? (
-                <VolumeX className="h-4 w-4" />
-              ) : (
-                <Volume2 className="h-4 w-4" />
-              )}
-            </button>
+            {!hasInteracted && (
+              <button
+                onClick={handleVideoTap}
+                className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-black/40"
+              >
+                <span className="flex items-center justify-center h-16 w-16 rounded-full bg-white/20 backdrop-blur-sm border-2 border-white">
+                  <Volume2 className="h-7 w-7 text-white" />
+                </span>
+                <span className="text-white text-base font-semibold drop-shadow-md">
+                  Toque para ouvir
+                </span>
+              </button>
+            )}
           </div>
           <p className="text-base text-slate-500 leading-relaxed">
             Você já garantiu seus painéis… mas sua aula está preparada para
