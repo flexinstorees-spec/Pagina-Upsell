@@ -258,7 +258,7 @@ function App() {
           <h1 className="text-[28px] leading-tight font-semibold tracking-tight text-slate-900">
             Complete Sua Aula Com{" "}
             <span className="text-emerald-600">
-              300 Dinâmicas Interativas
+              120 Dinâmicas Interativas
             </span>{" "}
             Para Aplicar Todos Os Dias
           </h1>
