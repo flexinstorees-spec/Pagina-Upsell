@@ -245,7 +245,7 @@ function App() {
           </span>
           <p className="text-sm text-slate-400 line-through">R$197,00</p>
           <p className="text-5xl font-semibold tracking-tight text-slate-900 leading-none">
-            R$29,90
+            R$14,90
           </p>
           <p className="text-sm text-slate-500 mt-2">
             Pagamento único · Sem mensalidade
