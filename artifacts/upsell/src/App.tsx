@@ -167,6 +167,7 @@ function App() {
   const [secondsLeft, setSecondsLeft] = useState(COUNTDOWN_SECONDS);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [hasInteracted, setHasInteracted] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
 
   const handleVideoTap = () => {
     if (videoRef.current) {
@@ -174,6 +175,18 @@ function App() {
       videoRef.current.muted = false;
       videoRef.current.play();
       setHasInteracted(true);
+      setIsPaused(false);
+    }
+  };
+
+  const handleVideoPlayPause = () => {
+    if (!videoRef.current) return;
+    if (videoRef.current.paused) {
+      videoRef.current.play();
+      setIsPaused(false);
+    } else {
+      videoRef.current.pause();
+      setIsPaused(true);
     }
   };
 
@@ -262,7 +275,11 @@ function App() {
             </span>{" "}
             Para Aplicar Todos Os Dias
           </h1>
-          <div className="relative mt-1 w-full overflow-hidden rounded-xl" style={{ aspectRatio: "9/16" }}>
+          <div
+            className="relative mt-1 w-full overflow-hidden rounded-xl"
+            style={{ aspectRatio: "9/16" }}
+            onClick={hasInteracted ? handleVideoPlayPause : undefined}
+          >
             <video
               ref={videoRef}
               src="https://i.imgur.com/Myw9yLg.mp4"
@@ -288,6 +305,16 @@ function App() {
                   Toque para ouvir
                 </span>
               </button>
+            )}
+            {hasInteracted && isPaused && (
+              <div className="absolute inset-0 flex items-center justify-center bg-black/30 pointer-events-none">
+                <span className="flex items-center justify-center h-16 w-16 rounded-full bg-black/50 backdrop-blur-sm">
+                  <svg className="h-7 w-7 text-white fill-white" viewBox="0 0 24 24">
+                    <rect x="5" y="4" width="4" height="16" rx="1" />
+                    <rect x="15" y="4" width="4" height="16" rx="1" />
+                  </svg>
+                </span>
+              </div>
             )}
           </div>
           <p className="text-base text-slate-500 leading-relaxed">
